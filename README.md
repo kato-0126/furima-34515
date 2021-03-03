@@ -23,11 +23,11 @@
 |name           |string     |null: false|
 |category_id    |integer    |null: false|
 |condition_id   |integer    |null: false|
-|explain        |string     |null: false|
+|explain        |text       |null: false|
 |fee_id         |integer    |null: false|
 |prefecture_id  |integer    |null: false|
 |date_id        |integer    |null: false|
-|price          |string     |null: false|
+|price          |integer     |null: false|
 |user           |references |foreign_key: true|
 
 ### Association

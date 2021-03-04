@@ -5,17 +5,16 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :nickname, presence: true
-  
-  with_options presence:true, format:{ with:  /\A[ぁ-んァ-ヶ一-龥々]+\z/, message:'全角文字を使用してください'} do
+  validates :password, format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i }
+  with_options presence: true, format: { with: /\A[ぁ-んァ-ヶ一-龥々]+\z/ } do
     validates :first_name
     validates :last_name
   end
- 
-  with_options presence: true,format:{ with:  /\A[ァ-ン]+\z/, message:'カタカナを使用してください' } do
-  validates :first_name_kana
-  validates :last_name_kana
- end
- 
- validates :birth, presence: true, format:{with: /[\d]/}
 
+  with_options presence: true, format: { with: /\A[ァ-ン]+\z/ } do
+    validates :first_name_kana
+    validates :last_name_kana
+  end
+
+  validates :birth, presence: true, format: { with: /\d/ }
 end

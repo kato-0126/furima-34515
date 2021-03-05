@@ -101,21 +101,20 @@ RSpec.describe User, type: :model do
       it 'emailに@が入っていないと登録できない' do
         @user.email = 'testtesttest.com'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Email is invalid")
+        expect(@user.errors.full_messages).to include('Email is invalid')
       end
       it 'passwordは6文字以上でないと登録できない' do
         @user.password = 'abc45'
         @user.password_confirmation = @user.password
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password is too short (minimum is 6 characters)")
+        expect(@user.errors.full_messages).to include('Password is too short (minimum is 6 characters)')
       end
       it 'passwordは全角だと登録できない' do
         @user.password = 'abc456ああ'
         @user.password_confirmation = @user.password
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password is invalid")
+        expect(@user.errors.full_messages).to include('Password is invalid')
       end
-
     end
   end
 end

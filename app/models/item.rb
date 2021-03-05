@@ -5,6 +5,8 @@ class Item < ApplicationRecord
 
   validates :name, presence: true
   validates :explain, presence: true
+  validates :price, presence:true, format: { with: /\d/ }
+  validates :image,presence: true
 
   with_options numericality: { other_than: 0 } do
   validates :category_id  

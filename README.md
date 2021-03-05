@@ -26,7 +26,7 @@
 |explain        |text       |null: false|
 |fee_id         |integer    |null: false|
 |prefecture_id  |integer    |null: false|
-|date_id        |integer    |null: false|
+|delivery_id        |integer    |null: false|
 |price          |integer     |null: false|
 |user           |references |foreign_key: true|
 

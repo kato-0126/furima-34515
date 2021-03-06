@@ -3,10 +3,13 @@ class Item < ApplicationRecord
   has_one :order
   has_one_attached :image
 
-  validates :name, presence: true
-  validates :explain, presence: true
-  validates :price, presence:true, format: { with: /\d/ }
-  validates :image,presence: true
+  with_options presence: true, format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i } do
+    validates :name
+    validates :explain
+  end
+  
+  validates :price, presence:true, inclusion: { in: 300..9999999 },format: { with: /\d/ }
+  validates :image, presence: true
 
   with_options numericality: { other_than: 0 } do
   validates :category_id  

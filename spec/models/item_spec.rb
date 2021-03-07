@@ -24,32 +24,32 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Explain can't be blank")
       end
       it "categoryを選択していないと出品できない" do
-        @item.category_id = '0'
+        @item.category_id = 0
         @item.valid?
         expect(@item.errors.full_messages).to include("Category must be other than 0")
       end
       it "conditionを選択していないと出品できない" do
-        @item.condition_id = '0'
+        @item.condition_id = 0
         @item.valid?
         expect(@item.errors.full_messages).to include("Condition must be other than 0")
       end
       it "feeを選択していないと出品できない" do
-        @item.fee_id = '0'
+        @item.fee_id = 0
         @item.valid?
         expect(@item.errors.full_messages).to include("Fee must be other than 0")
       end
       it "prefectureを選択していないと出品できない" do
-        @item.prefecture_id = '0'
+        @item.prefecture_id = 0
         @item.valid?
         expect(@item.errors.full_messages).to include("Prefecture must be other than 0")
       end
       it "deliveryを選択していないと出品できない" do
-        @item.delivery_id = '0'
+        @item.delivery_id = 0
         @item.valid?
         expect(@item.errors.full_messages).to include("Delivery must be other than 0")
       end
       it "imageが空では出品できない" do
-        @item.image =()
+        @item.image = nil
         @item.valid?
         expect(@item.errors.full_messages).to include("Image can't be blank")
       end
@@ -59,12 +59,12 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Price can't be blank")
       end
       it "priceが300以上でないと出品できない" do
-        @item.price ='200'
+        @item.price = 200
         @item.valid?
         expect(@item.errors.full_messages).to include("Price is not included in the list")
       end
       it "priceが9999999以下でないと出品できない" do
-        @item.price ='999999999999999999'
+        @item.price = 999999999999999999
         @item.valid?
         expect(@item.errors.full_messages).to include("Price is not included in the list")
       end
@@ -73,8 +73,8 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Price is not included in the list")
       end
-      it "priceは半角数字でないと出品できない" do
-        @item.price ='abcd'
+      it "priceは全角数字だと出品できない" do
+        @item.price ='１２３４５６'
         @item.valid?
         expect(@item.errors.full_messages).to include("Price is not included in the list")
       end

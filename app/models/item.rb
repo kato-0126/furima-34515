@@ -3,12 +3,12 @@ class Item < ApplicationRecord
     has_one :order
     has_one_attached :image
 
-  
-    validates :name, presence: true, length:{ maximum:40 }
-    validates :explain, presence: true, length:{ maximum:1000 }
-  
-    validates :price, presence: true, inclusion: { in: 300..9999999 },format: { with: /\d/ }
-    validates :image, presence: true
+    with_options presence: true do
+    validates :name, length:{ maximum:40 }
+    validates :explain, length:{ maximum:1000 }
+    validates :price,  inclusion: { in: 300..9999999 },format: { with: /\d/ }
+    validates :image 
+    end
 
     with_options numericality: { other_than: 0 } do
       validates :category_id  

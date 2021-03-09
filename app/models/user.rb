@@ -19,5 +19,5 @@ class User < ApplicationRecord
   validates :birth, presence: true, format: { with: /\d/ }
 
   has_many :items
-  # has_many :orders
+  has_many :orders
 end

@@ -5,6 +5,6 @@ FactoryBot.define do
     city{Faker::Address.city}
     address_line1{Faker::Address.street_address}
     address_line2{Faker::Address.building_number}
-    phone_number{Faker::Number.number(digits: 11)}
+    phone_number{'09012345678'}
   end
 end

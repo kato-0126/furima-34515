@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
+  before_action :move_to_index
 
   def index
     @item = Item.find(params[:item_id])
@@ -30,5 +31,11 @@ private
         card: order_params[:token],
         currency: 'JPY'
       )
+  end
+  def move_to_index
+    item = Item.find(params[:item_id])
+    if item.user_id == current_user.id ||item.order != nil
+      redirect_to root_path
+    end
   end
 end

@@ -10,6 +10,8 @@ class OrderAddress
     validates :city
     validates :address_line1
     validates :token
+    validates :item_id
+    validates :user_id
   end
 
   def save

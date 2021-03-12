@@ -3,11 +3,12 @@ require 'rails_helper'
 RSpec.describe OrderAddress, type: :model do
   describe '商品購入機能実装' do
     before do
-      user = FactoryBot.build(:user)
-      item = FactoryBot.build(:item)
-      order = FactoryBot.build(:order)
+      user = FactoryBot.create(:user)
+      item = FactoryBot.create(:item)
+      order = FactoryBot.create(:order)
       @order_address = FactoryBot.build(:order_address,user_id:user.id,item_id:item.id,order_id:order.id)
     end
+    
     context '商品が購入できるとき' do
       it 'すべての値が正しく入力されていれば商品購入できること' do
         expect(@order_address).to be_valid
@@ -53,10 +54,25 @@ RSpec.describe OrderAddress, type: :model do
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Phone number is invalid")
       end
+      it 'phone_numberが英字が入っていると購入できない' do
+        @order_address.phone_number = '09O12345678'
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("Phone number is invalid")
+      end
       it 'tokenが空だと購入できない' do
         @order_address.token = nil
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Token can't be blank")
+      end
+      it 'user_idが空だと購入できない' do
+        @order_address.user_id = nil
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("User can't be blank")
+      end
+      it 'item_idが空だと購入できない' do
+        @order_address.item_id = nil
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("Item can't be blank")
       end
     end
   end

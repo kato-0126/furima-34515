@@ -7,8 +7,9 @@ RSpec.describe OrderAddress, type: :model do
       item = FactoryBot.create(:item)
       order = FactoryBot.create(:order)
       @order_address = FactoryBot.build(:order_address,user_id:user.id,item_id:item.id,order_id:order.id)
+      sleep 0.1 #0.1秒待機。createメソッドで負荷がかかりmysqlに繋がらないエラーが出るため
     end
-    
+
     context '商品が購入できるとき' do
       it 'すべての値が正しく入力されていれば商品購入できること' do
         expect(@order_address).to be_valid

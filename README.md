@@ -48,7 +48,7 @@
 - has_one :address
 
 
-## addressテーブル
+## addressesテーブル
 
 |Column         |Type       |Options    |
 |---------------|-----------|-----------|
